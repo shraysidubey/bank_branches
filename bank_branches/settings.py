@@ -25,7 +25,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['https://bank-branches-heroku.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
