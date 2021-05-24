@@ -13,8 +13,9 @@ def possible_matches(request):
 
         branches_queryset = Branch.objects.filter(branch__contains=branch_string).order_by('ifsc')[int(offset):int(offset)+int(limit)]
         data = list(branches_queryset.values())
+        branch_dic = {"branches":data}
 
-        return JsonResponse(data, safe=False)
+        return JsonResponse(branch_dic, safe=False)
     except:
         return HttpResponse(status=500)
 
@@ -34,11 +35,14 @@ def all_possible_matches(request):
         branches_queryset = Branch.objects.filter(Q(ifsc=search_string) | Q(branch=search_string)
                         | Q(address=search_string) | Q(city=search_string) | Q(district=search_string)|
                         Q(state=search_string)).order_by('ifsc')[int(offset):int(offset)+int(limit)]
-        print branches_queryset
+        #print branches_queryset
         data = list(branches_queryset.values())
-        print data
+        #print data
 
-        return JsonResponse(data, safe=False)
+        branch_dic = {"branches": data}
+
+
+        return JsonResponse(branch_dic, safe=False)
     except:
 
         return HttpResponse(status=500)
